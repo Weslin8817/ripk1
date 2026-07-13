@@ -1,61 +1,7 @@
-"use client";
-
-import { useState } from "react";
-
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
 
-const trajectoryStates = [
-  {
-    id: "ordered",
-    step: "01",
-    condition: "KINASE-ACTIVE",
-    title: "Ordered amyloid rods",
-    copy: "RIPK1 adopts a radially compact architecture around the RHIM core. This ordered scaffold supports a locally concentrated RIPK3–MLKL signaling environment.",
-    signal: "SIGNALING-COMPETENT",
-  },
-  {
-    id: "branched",
-    step: "02",
-    condition: "KINASE-INHIBITED · EARLY",
-    title: "Branched intermediates",
-    copy: "Radial loosening increases access to the RIPK1 death domain. DD-mediated contacts cross-link rods at branch junctions, where FADD is preferentially enriched.",
-    signal: "DESTABILIZED",
-  },
-  {
-    id: "disordered",
-    step: "03",
-    condition: "KINASE-INHIBITED · LATE",
-    title: "Collapsed assemblies",
-    copy: "Continued remodeling produces enlarged, structurally disordered assemblies. Molecular recruitment persists, but productive signal transmission is lost.",
-    signal: "SIGNALING-INCOMPETENT",
-  },
-  {
-    id: "restored",
-    step: "04",
-    condition: "KINASE RESTORED",
-    title: "Ordered features re-emerge",
-    copy: "After Nec-1s withdrawal, pRIPK1-positive rod-like elements extend from the disordered scaffold, demonstrating that the architectural switch is reversible.",
-    signal: "REACTIVATED",
-  },
-];
-
-function StateGraphic({ state }: { state: string }) {
-  return (
-    <div className={`state-graphic state-${state}`} aria-hidden="true">
-      <div className="state-glow" />
-      <div className="rod rod-a" /><div className="rod rod-b" /><div className="rod rod-c" />
-      <div className="branch branch-a" /><div className="branch branch-b" /><div className="branch branch-c" />
-      <div className="cloud cloud-a" /><div className="cloud cloud-b" /><div className="cloud cloud-c" />
-      <i className="hotspot h1" /><i className="hotspot h2" /><i className="hotspot h3" />
-    </div>
-  );
-}
-
 export default function Home() {
-  const [activeState, setActiveState] = useState(0);
-  const current = trajectoryStates[activeState];
-
   return (
     <main>
       <header className="site-header">
@@ -65,9 +11,6 @@ export default function Home() {
         </a>
         <nav aria-label="Primary navigation">
           <a href="#architecture">Architecture</a>
-          <a href="#trajectory">Structural trajectory</a>
-          <a href="#hotspots">Functional hotspots</a>
-          <a href="#model">Working model</a>
         </nav>
       </header>
 
@@ -94,7 +37,6 @@ export default function Home() {
             a nanoscale structural transition determines RIPK3–MLKL signal output.
           </p>
           <div className="hero-actions">
-            <a className="primary-button" href="#trajectory">Explore the trajectory <span>↘</span></a>
             <a className="text-link" href="#finding">Read the central finding <span>→</span></a>
           </div>
         </div>
@@ -105,9 +47,6 @@ export default function Home() {
             <p><strong>SMLM</strong><span>ExM</span><span>qSMLM</span></p>
           </div>
           <a href="#architecture"><b>01</b><span>In situ<br />architecture</span></a>
-          <a href="#trajectory"><b>02</b><span>Structural<br />trajectory</span></a>
-          <a href="#hotspots"><b>03</b><span>Functional<br />hotspots</span></a>
-          <a href="#model"><b>04</b><span>Working<br />model</span></a>
         </div>
 
         <div className="scale-bar" aria-hidden="true"><span /></div>
@@ -181,120 +120,6 @@ export default function Home() {
             <article><b>PHARMACOLOGY</b><h3>Nec-1 enlarges and disorders WT assemblies.</h3><p>TSZ-induced small-dot necrosomes resolve as ordered rods, whereas Nec-1 treatment produces large dots that resolve as disordered structures by SMLM.</p></article>
             <article><b>GENETICS</b><h3>K45A and D138N phenocopy inhibition.</h3><p>Kinase-dead mutants predominantly form disordered assemblies under TSZ alone, and Nec-1 produces no further architectural shift.</p></article>
             <article><b>CONFORMATION</b><h3>S161 phosphomimetics bypass Nec-1.</h3><p>S161E-containing variants preserve ordered rods and necroptotic output, placing conformational activation upstream of autophosphorylation.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section className="trajectory-section" id="trajectory">
-        <div className="section-heading compact">
-          <p className="section-index">STRUCTURAL TRAJECTORY / 04</p>
-          <h2>A reversible switch between ordered and disordered states.</h2>
-        </div>
-        <div className="trajectory-console">
-          <div className="state-tabs" role="tablist" aria-label="Necrosome structural states">
-            {trajectoryStates.map((state, index) => (
-              <button
-                key={state.id}
-                role="tab"
-                aria-selected={activeState === index}
-                aria-controls="trajectory-panel"
-                onClick={() => setActiveState(index)}
-              >
-                <span>{state.step}</span>{state.title}
-              </button>
-            ))}
-          </div>
-          <div className="trajectory-panel" id="trajectory-panel" role="tabpanel">
-            <div className="trajectory-copy">
-              <p>{current.condition}</p>
-              <h3>{current.title}</h3>
-              <div className="signal-status"><i />{current.signal}</div>
-              <p className="state-description">{current.copy}</p>
-              <div className="state-progress" aria-hidden="true"><span style={{ width: `${25 * (activeState + 1)}%` }} /></div>
-              <small>SELECT A STRUCTURAL STATE TO EXPLORE THE SEQUENCE</small>
-            </div>
-            <StateGraphic state={current.id} />
-          </div>
-        </div>
-        <figure className="wide-evidence">
-          <img src={assetPath("/figure-placeholder.svg")} width="1800" height="1125" loading="lazy" decoding="async" alt="Figure 3 asset pending" />
-          <figcaption><span>DIRECT EVIDENCE</span> Time-resolved SMLM and inhibitor withdrawal reveal rods → branches → disorder, followed by re-emergence of ordered features.</figcaption>
-        </figure>
-      </section>
-
-      <section className="evidence-section evidence-dd" id="death-domain">
-        <div className="section-heading">
-          <p className="section-index">DEATH-DOMAIN REMODELING / 05</p>
-          <h2>The death domain converts loosened rods into branched collapse.</h2>
-          <p>DD-mediated contacts amplify the primary radial defect into a distinct higher-order architecture.</p>
-        </div>
-        <div className="evidence-layout reverse">
-          <div className="evidence-points">
-            <article><b>JUNCTION IDENTITY</b><h3>FADD marks branch intersections.</h3><p>FADD is preferentially enriched at junction regions within kinase-inhibited RIPK3 assemblies, linking the branch architecture to death-domain interactions.</p></article>
-            <article><b>STRUCTURAL NECESSITY</b><h3>ΔDD and R603E restore rods.</h3><p>Removing the DD or disrupting a key DD interface suppresses branched, disordered assembly under kinase-inactive conditions.</p></article>
-            <article><b>FUNCTIONAL LIMIT</b><h3>Ordered shape alone is insufficient.</h3><p>Kinase-inactive ΔDD and R603E rods can support RIPK3 activation, yet fail to activate MLKL or execute necroptosis.</p></article>
-          </div>
-          <figure className="paper-figure">
-            <img src={assetPath("/figure-placeholder.svg")} width="1800" height="1125" loading="lazy" decoding="async" alt="Figure 4 asset pending" />
-            <figcaption><span>FIGURE 4</span> Death-domain engagement drives branching, while kinase-dependent compaction remains essential for function.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section className="decompaction-section">
-        <div className="decompaction-copy">
-          <p className="section-index">THE PHYSICAL CHECKPOINT / 06</p>
-          <h2>Kinase inhibition loosens the radial axis while preserving axial order.</h2>
-          <p>Removing the death domain isolates the primary architectural defect: RIPK1 expands radially under kinase inhibition, while the RHIM-dependent periodic scaffold remains intact.</p>
-          <div className="delta-grid">
-            <div><b>+5.83 nm</b><span>N-terminal radial shift</span></div>
-            <div><b>+6.53 nm</b><span>C-terminal radial shift</span></div>
-            <div><b>34.77 → 33.58 nm</b><span>Axial pitch; no significant change</span></div>
-          </div>
-        </div>
-        <figure className="paper-figure dark-frame">
-          <img src={assetPath("/figure-placeholder.svg")} width="1800" height="1125" loading="lazy" decoding="async" alt="Figure 5 asset pending" />
-          <figcaption><span>FIGURE 5</span> Radial decompaction creates space for death-domain engagement and architectural collapse.</figcaption>
-        </figure>
-      </section>
-
-      <section className="hotspots-section" id="hotspots">
-        <div className="section-heading">
-          <p className="section-index">FUNCTIONAL HOTSPOTS / 07</p>
-          <h2>Recruitment alone cannot execute the signal.</h2>
-          <p>qSMLM reveals a local-density defect that conventional abundance measurements cannot resolve.</p>
-        </div>
-        <div className="hotspot-layout">
-          <figure className="paper-figure">
-            <img src={assetPath("/figure-placeholder.svg")} width="1800" height="1125" loading="lazy" decoding="async" alt="Figure 6 asset pending" />
-            <figcaption><span>FIGURE 6</span> Radial compaction licenses MLKL activation by organizing functional RIPK3 hotspots.</figcaption>
-          </figure>
-          <div className="causal-chain">
-            <article><span>01</span><i className="chain-dot cyan" /><h3>Radial decompaction</h3><p>Overall necrosome density falls while the axial amyloid scaffold remains assembled.</p></article>
-            <article><span>02</span><i className="chain-dot magenta" /><h3>pRIPK3 hotspots disperse</h3><p>pRIPK3 abundance, cluster number, and especially local cluster density are reduced.</p></article>
-            <article><span>03</span><i className="chain-dot red" /><h3>MLKL activation fails</h3><p>MLKL recruitment increases, yet local density, phosphorylation, oligomerization, and release are impaired.</p></article>
-          </div>
-        </div>
-        <blockquote>“Radial compaction decouples molecular recruitment from signal execution.”</blockquote>
-      </section>
-
-      <section className="model-section" id="model">
-        <div className="section-heading compact">
-          <p className="section-index">WORKING MODEL / 08</p>
-          <h2>Kinase activity orchestrates structural state and functional outcome.</h2>
-        </div>
-        <figure className="model-figure">
-          <img src={assetPath("/figure-placeholder.svg")} width="1600" height="1000" loading="lazy" decoding="async" alt="Working model asset pending" />
-        </figure>
-        <div className="model-comparison">
-          <div className="model-active">
-            <p>KINASE-ACTIVE</p><h3>Compacted architecture</h3>
-            <span>Ordered amyloid assembly</span><span>Dense RIPK3–MLKL hotspots</span><span>MLKL phosphorylation</span><b>NECROPTOTIC EXECUTION</b>
-          </div>
-          <div className="model-divider">⇄</div>
-          <div className="model-inactive">
-            <p>KINASE-INACTIVE</p><h3>Decompacted architecture</h3>
-            <span>Preserved RHIM axial order</span><span>DD-driven branching and collapse</span><span>Dispersed signaling molecules</span><b>NON-FUNCTIONAL STATE</b>
           </div>
         </div>
       </section>
