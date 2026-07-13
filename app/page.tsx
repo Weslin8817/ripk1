@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const assetPath = (path: string) => `${basePath}${path}`;
+
 const trajectoryStates = [
   {
     id: "ordered",
@@ -76,12 +79,12 @@ export default function Home() {
           loop
           playsInline
           preload="metadata"
-          poster="/ripk1-hero-poster.jpg"
+          poster={assetPath("/ripk1-hero-poster.jpg")}
           aria-label="Time-lapse microscopy of RIPK1 necrosome dynamics"
         >
-          <source src="/ripk1-hero.mp4" type="video/mp4" />
+          <source src={assetPath("/ripk1-hero.mp4")} type="video/mp4" />
         </video>
-        <div className="hero-image" aria-hidden="true" />
+        <div className="hero-image" style={{ backgroundImage: `url(${assetPath("/ripk1-hero-poster.jpg")})` }} aria-hidden="true" />
         <div className="hero-shade" aria-hidden="true" />
         <div className="hero-content">
           <p className="eyebrow">RIPK1 · NECROSOME ARCHITECTURE</p>
@@ -148,7 +151,7 @@ export default function Home() {
         </div>
         <div className="architecture-layout">
           <figure className="paper-figure">
-            <img src="/figure-1-dark.webp" width="1800" height="2044" loading="lazy" decoding="async" alt="Figure 1 showing AmyloMap analysis of full-length RIPK1 amyloid architecture" />
+            <img src={assetPath("/figure-1-dark.webp")} width="1800" height="2044" loading="lazy" decoding="async" alt="Figure 1 showing AmyloMap analysis of full-length RIPK1 amyloid architecture" />
             <figcaption><span>FIGURE 1</span> RHIM-centered core with radially distributed death and kinase domains.</figcaption>
           </figure>
           <div className="metric-stack">
@@ -171,7 +174,7 @@ export default function Home() {
         </div>
         <div className="evidence-layout">
           <figure className="paper-figure">
-            <img src="/figure-2-dark.webp" width="1800" height="2390" loading="lazy" decoding="async" alt="Figure 2 showing how RIPK1 kinase inhibition converts active amyloids into disordered assemblies" />
+            <img src={assetPath("/figure-2-dark.webp")} width="1800" height="2390" loading="lazy" decoding="async" alt="Figure 2 showing how RIPK1 kinase inhibition converts active amyloids into disordered assemblies" />
             <figcaption><span>FIGURE 2</span> Kinase-dead RIPK1 retains assembly capacity but forms signaling-incompetent, disordered necrosomes.</figcaption>
           </figure>
           <div className="evidence-points">
@@ -214,7 +217,7 @@ export default function Home() {
           </div>
         </div>
         <figure className="wide-evidence">
-          <img src="/figure-3-dark.webp" width="1800" height="2120" loading="lazy" decoding="async" alt="Figure 3 showing the reversible structural transition of RIPK1 assemblies" />
+          <img src={assetPath("/figure-placeholder.svg")} width="1800" height="1125" loading="lazy" decoding="async" alt="Figure 3 asset pending" />
           <figcaption><span>DIRECT EVIDENCE</span> Time-resolved SMLM and inhibitor withdrawal reveal rods → branches → disorder, followed by re-emergence of ordered features.</figcaption>
         </figure>
       </section>
@@ -232,7 +235,7 @@ export default function Home() {
             <article><b>FUNCTIONAL LIMIT</b><h3>Ordered shape alone is insufficient.</h3><p>Kinase-inactive ΔDD and R603E rods can support RIPK3 activation, yet fail to activate MLKL or execute necroptosis.</p></article>
           </div>
           <figure className="paper-figure">
-            <img src="/figure-4-dark.webp" width="1800" height="2264" loading="lazy" decoding="async" alt="Figure 4 showing that the RIPK1 death domain is required for branched assembly after kinase inhibition" />
+            <img src={assetPath("/figure-placeholder.svg")} width="1800" height="1125" loading="lazy" decoding="async" alt="Figure 4 asset pending" />
             <figcaption><span>FIGURE 4</span> Death-domain engagement drives branching, while kinase-dependent compaction remains essential for function.</figcaption>
           </figure>
         </div>
@@ -250,7 +253,7 @@ export default function Home() {
           </div>
         </div>
         <figure className="paper-figure dark-frame">
-          <img src="/figure-5-dark.webp" width="1800" height="2027" loading="lazy" decoding="async" alt="Figure 5 showing radial but not axial decompaction of RIPK1 amyloids" />
+          <img src={assetPath("/figure-placeholder.svg")} width="1800" height="1125" loading="lazy" decoding="async" alt="Figure 5 asset pending" />
           <figcaption><span>FIGURE 5</span> Radial decompaction creates space for death-domain engagement and architectural collapse.</figcaption>
         </figure>
       </section>
@@ -263,7 +266,7 @@ export default function Home() {
         </div>
         <div className="hotspot-layout">
           <figure className="paper-figure">
-            <img src="/figure-6-dark.webp" width="1800" height="1970" loading="lazy" decoding="async" alt="Figure 6 showing quantitative SMLM analysis of RIPK3 and MLKL functional hotspots" />
+            <img src={assetPath("/figure-placeholder.svg")} width="1800" height="1125" loading="lazy" decoding="async" alt="Figure 6 asset pending" />
             <figcaption><span>FIGURE 6</span> Radial compaction licenses MLKL activation by organizing functional RIPK3 hotspots.</figcaption>
           </figure>
           <div className="causal-chain">
@@ -281,7 +284,7 @@ export default function Home() {
           <h2>Kinase activity orchestrates structural state and functional outcome.</h2>
         </div>
         <figure className="model-figure">
-          <img src="/figure-7-model.webp" width="1600" height="960" loading="lazy" decoding="async" alt="Working model of kinase-active and kinase-inactive necrosome states" />
+          <img src={assetPath("/figure-placeholder.svg")} width="1600" height="1000" loading="lazy" decoding="async" alt="Working model asset pending" />
         </figure>
         <div className="model-comparison">
           <div className="model-active">
@@ -308,7 +311,7 @@ export default function Home() {
         </div>
         <div className="validation-block" id="validation">
           <figure className="paper-figure validation-figure">
-            <img src="/figure-s2-dark.webp" width="1800" height="1390" loading="lazy" decoding="async" alt="Figure S2 validating reduced linkage error with SNAP-tag labeling" />
+            <img src={assetPath("/figure-s2-dark.webp")} width="1800" height="1390" loading="lazy" decoding="async" alt="Figure S2 validating reduced linkage error with SNAP-tag labeling" />
             <figcaption><span>FIGURE S2</span> SNAP-tag labeling reduces linkage error and validates nanoscale width measurements.</figcaption>
           </figure>
           <div className="validation-copy">
