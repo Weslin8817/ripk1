@@ -1,32 +1,34 @@
 # RIPK1 Kinase Activity · Necrosome Architecture
 
-Interactive research website describing how RIPK1 kinase activity controls necrosome architecture and RIPK3–MLKL signaling output.
+RIPK1 激酶活性与坏死小体结构的交互式科研展示网站。项目采用 Next.js App Router，构建为纯静态站点并部署到 GitHub Pages。
 
-## Local development
+## 本地开发
+
+环境要求：Node.js 22.13 或更高版本。
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+访问 `http://localhost:3000`。
 
-## Static build
+## 常用命令
 
 ```bash
-npm run build
+npm run dev        # 启动本地开发服务
+npm run lint       # ESLint 检查
+npm run typecheck  # TypeScript 类型检查
+npm run build      # 生成静态站点到 out/
+npm run check      # 依次执行上述三项质量检查
 ```
 
-The static export is written to `out/`. When `NEXT_PUBLIC_BASE_PATH=/ripk1_website` is set, all application and public-asset URLs are prepared for this repository's GitHub Pages subpath.
+## 部署
 
-## GitHub Pages deployment
-
-Every push to `main` triggers [`.github/workflows/pages.yml`](.github/workflows/pages.yml), builds the static export, and deploys it to:
+推送到 `main` 后，[GitHub Actions](.github/workflows/pages.yml) 会设置仓库子路径、构建静态站点并部署到：
 
 <https://weslin8817.github.io/ripk1_website/>
 
-Before the first deployment, open **Settings → Pages → Build and deployment** in GitHub and select **GitHub Actions** as the source.
+## 项目结构
 
-## Pending figure assets
-
-The source currently references Figures 3–7, but those files are not present in `public/`. The site uses `public/figure-placeholder.svg` for those sections until the final figure assets are added.
+当前目录职责与后续整体改版建议见 [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)。

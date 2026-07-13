@@ -26,16 +26,12 @@
     "next-env.d.ts",
     "app/**/*.ts",
     "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "content/**/*.ts",
+    "lib/**/*.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "build",
-    "db",
-    "examples",
-    "worker",
-    "drizzle.config.ts",
-    "vite.config.ts"
-  ]
+  "exclude": ["node_modules"]
 }
