@@ -1,16 +1,43 @@
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
 
+type FigurePlaceholderProps = {
+  label: string;
+  title: string;
+  description: string;
+  className?: string;
+};
+
+function FigurePlaceholder({ label, title, description, className = "" }: FigurePlaceholderProps) {
+  return (
+    <figure className={`figure-placeholder ${className}`}>
+      <div className="placeholder-canvas" role="img" aria-label={`Reserved image area for ${label}`}>
+        <span>IMAGE SPACE RESERVED</span>
+        <i aria-hidden="true" />
+        <b>{label}</b>
+      </div>
+      <figcaption>
+        <span>{label}</span>
+        <strong>{title}</strong>
+        <p>{description}</p>
+      </figcaption>
+    </figure>
+  );
+}
+
 export default function Home() {
   return (
     <main>
       <header className="site-header">
         <a className="brand" href="#overview" aria-label="RIPK1 necrosome study home">
           <span className="brand-mark" aria-hidden="true" />
-          <span>STRUCTURAL CELL DEATH BIOLOGY</span>
+          <span>STRUCTURAL CELL BIOLOGY</span>
         </a>
         <nav aria-label="Primary navigation">
-          <a href="#architecture">Architecture</a>
+          <a href="#architecture">Question</a>
+          <a href="#radial-measurement">Radial</a>
+          <a href="#axial-measurement">Axial</a>
+          <a href="#reconstruction">Reconstruction</a>
         </nav>
       </header>
 
@@ -30,133 +57,253 @@ export default function Home() {
         <div className="hero-image" style={{ backgroundImage: `url(${assetPath("/ripk1-hero-poster.jpg")})` }} aria-hidden="true" />
         <div className="hero-shade" aria-hidden="true" />
         <div className="hero-content">
-          <p className="eyebrow">RIPK1 · NECROSOME ARCHITECTURE</p>
-          <h1>Kinase activity<br />reshapes the necrosome.</h1>
+          <p className="eyebrow">RESULT 1 · IN SITU RIPK1 ARCHITECTURE</p>
+          <h1>Full-length RIPK1<br />resolved in situ.</h1>
           <p className="hero-copy">
-            From ordered amyloid rods to branched, disordered assemblies—revealing how
-            a nanoscale structural transition determines RIPK3–MLKL signal output.
+            AmyloMap combines SNAP-SMLM, mBaojin-assisted expansion microscopy,
+            and structure simulation to resolve radial domain organization and axial
+            periodicity directly in cells.
           </p>
           <div className="hero-actions">
-            <a className="text-link" href="#finding">Read the central finding <span>→</span></a>
+            <a className="text-link" href="#finding">Explore Result 1 <span>→</span></a>
           </div>
         </div>
 
         <div className="hero-rail" aria-label="Study methods and sections">
           <div className="method-lockup">
             <span className="localization-icon" aria-hidden="true"><i /><i /><i /><i /><i /></span>
-            <p><strong>SMLM</strong><span>ExM</span><span>qSMLM</span></p>
+            <p><strong>SMLM</strong><span>ExM</span><span>Simulation</span></p>
           </div>
-          <a href="#architecture"><b>01</b><span>In situ<br />architecture</span></a>
+          <a href="#architecture"><b>01</b><span>Scientific<br />question</span></a>
+          <a href="#radial-measurement"><b>02</b><span>Radial<br />measurement</span></a>
+          <a href="#axial-measurement"><b>03</b><span>Axial<br />periodicity</span></a>
+          <a href="#reconstruction"><b>04</b><span>Structure<br />reconstruction</span></a>
         </div>
 
         <div className="scale-bar" aria-hidden="true"><span /></div>
       </section>
 
-      <section className="finding" id="finding">
-        <div>
-          <p className="section-index">THE CENTRAL FINDING / 01</p>
-          <h2>Assembly is preserved.<br />Signaling competence is not.</h2>
+      <section className="result-intro" id="finding">
+        <div className="result-intro-copy">
+          <p className="section-index">RESULT 1 / IN SITU ARCHITECTURE</p>
+          <h2>AmyloMap resolves the architecture of full-length RIPK1 amyloids in cells.</h2>
+          <p>
+            The analysis moves from a structural question to two orthogonal measurements:
+            SNAP-SMLM defines radial domain position, while mBaojin-assisted expansion
+            microscopy resolves axial periodicity. These constraints are then integrated
+            into an experimentally grounded full-length assembly model.
+          </p>
         </div>
-        <p>
-          Loss of RIPK1 kinase activity still permits RHIM-mediated amyloidogenesis,
-          but relaxes the radial organization of RIPK1. The resulting assemblies lose
-          the dense RIPK3–MLKL hotspots required for productive necroptotic execution.
-        </p>
+        <div className="result-route" aria-label="Result 1 sections">
+          <a href="#architecture"><b>01</b><span>Scientific<br />question</span></a>
+          <a href="#radial-measurement"><b>02</b><span>Radial<br />measurement</span></a>
+          <a href="#axial-measurement"><b>03</b><span>Axial<br />periodicity</span></a>
+          <a href="#reconstruction"><b>04</b><span>Simulation &amp;<br />reconstruction</span></a>
+        </div>
       </section>
 
-      <section className="question-grid">
-        <article>
-          <span>01 / THE GAP</span>
-          <h3>No definitive substrate</h3>
-          <p>RIPK1 kinase activity is essential for necroptosis, yet a downstream substrate that explains this function remains undefined.</p>
-        </article>
-        <article>
-          <span>02 / THE STRUCTURAL ANSWER</span>
-          <h3>An allosteric checkpoint</h3>
-          <p>Kinase activity maintains a compact supramolecular state of RIPK1 independently of conventional substrate phosphorylation.</p>
-        </article>
-        <article>
-          <span>03 / THE CONSEQUENCE</span>
-          <h3>Architecture licenses output</h3>
-          <p>Radial compaction concentrates RIPK3 and MLKL into high-density functional hotspots that enable necroptotic execution.</p>
-        </article>
-      </section>
-
-      <section className="architecture-section" id="architecture">
-        <div className="section-heading">
-          <p className="section-index">IN SITU ARCHITECTURE / 02</p>
-          <h2>AmyloMap resolves full-length RIPK1 at sub-molecular scale.</h2>
-          <p>Low-linkage-error SMLM defines radial domain positioning; ExM resolves ordered axial periodicity directly in cells.</p>
+      <section className="result-section question-section" id="architecture">
+        <div className="part-heading">
+          <div className="part-number"><span>PART</span><b>01</b></div>
+          <div>
+            <p className="section-index">SCIENTIFIC QUESTION / FIGURE 1A-1B</p>
+            <h2>How is full-length RIPK1 organized inside an amyloid assembly?</h2>
+          </div>
+          <p className="part-summary">
+            Structures exist for isolated RIPK1 domains and minimal RHIM amyloid cores,
+            but the in situ organization of the full-length, conformationally flexible
+            protein remained unresolved.
+          </p>
         </div>
-        <div className="architecture-layout">
-          <figure className="paper-figure">
-            <img src={assetPath("/figure-1-dark.webp")} width="1800" height="2044" loading="lazy" decoding="async" alt="Figure 1 showing AmyloMap analysis of full-length RIPK1 amyloid architecture" />
-            <figcaption><span>FIGURE 1</span> RHIM-centered core with radially distributed death and kinase domains.</figcaption>
-          </figure>
-          <div className="metric-stack">
-            <div><strong>50.20 ± 1.70 nm</strong><span>N-terminal apparent diameter of RIPK1-FL</span></div>
-            <div><strong>23.31 ± 1.10 nm</strong><span>C-terminal apparent diameter of RIPK1-FL</span></div>
-            <div><strong>36.56 ± 0.96 nm</strong><span>Axial pitch of full-length RIPK1 assemblies</span></div>
-            <div className="domain-order">
-              <p>RADIAL ORGANIZATION</p>
-              <ol><li><i className="rh-core" />RHIM core</li><li><i className="dd-layer" />Death domain</li><li><i className="kd-layer" />Kinase domain</li></ol>
+
+        <div className="question-layout">
+          <div className="question-copy">
+            <div className="question-prompt">
+              <span>THE STRUCTURAL GAP</span>
+              <p>Can the radial and axial organization of an intact RIPK1 amyloid be measured directly in cells?</p>
+            </div>
+            <div className="evidence-list">
+              <article><b>DOMAIN CONTEXT</b><h3>KD - ID - RHIM - DD</h3><p>Figure 1A-1B establishes the domain map and the full-length and truncated constructs used to locate individual domains.</p></article>
+              <article><b>ASSEMBLY RULE</b><h3>The RHIM is required.</h3><p>Only constructs retaining the RHIM form discrete puncta, rods, or aggregates; RHIM-deficient constructs remain diffuse.</p></article>
+              <article><b>REFERENCE STATE</b><h3>Rod-like amyloids anchor the analysis.</h3><p>Confocal dots and rods resolve by SMLM into rod-like architectures, which become the reference framework for subsequent measurements.</p></article>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="evidence-section evidence-kinase" id="kinase-inhibition">
-        <div className="section-heading">
-          <p className="section-index">KINASE-DEPENDENT STATE / 03</p>
-          <h2>Kinase inhibition redirects assembly toward inactive disorder.</h2>
-          <p>Pharmacological and genetic perturbations converge on the same architectural phenotype.</p>
-        </div>
-        <div className="evidence-layout">
-          <figure className="paper-figure">
-            <img src={assetPath("/figure-2-dark.webp")} width="1800" height="2390" loading="lazy" decoding="async" alt="Figure 2 showing how RIPK1 kinase inhibition converts active amyloids into disordered assemblies" />
-            <figcaption><span>FIGURE 2</span> Kinase-dead RIPK1 retains assembly capacity but forms signaling-incompetent, disordered necrosomes.</figcaption>
-          </figure>
-          <div className="evidence-points">
-            <article><b>PHARMACOLOGY</b><h3>Nec-1 enlarges and disorders WT assemblies.</h3><p>TSZ-induced small-dot necrosomes resolve as ordered rods, whereas Nec-1 treatment produces large dots that resolve as disordered structures by SMLM.</p></article>
-            <article><b>GENETICS</b><h3>K45A and D138N phenocopy inhibition.</h3><p>Kinase-dead mutants predominantly form disordered assemblies under TSZ alone, and Nec-1 produces no further architectural shift.</p></article>
-            <article><b>CONFORMATION</b><h3>S161 phosphomimetics bypass Nec-1.</h3><p>S161E-containing variants preserve ordered rods and necroptotic output, placing conformational activation upstream of autophosphorylation.</p></article>
+          <div className="figure-stack">
+            <FigurePlaceholder
+              label="FIGURE 1A-1B"
+              title="Domain organization and construct design"
+              description="Reserve for the RIPK1 domain schematic, available structures, full-length prediction, and truncation map."
+              className="placeholder-primary"
+            />
           </div>
         </div>
       </section>
 
-      <section className="methods-section">
-        <div className="section-heading compact">
-          <p className="section-index">AMYLOMAP / 09</p>
-          <h2>One framework. Three spatial scales.</h2>
+      <section className="result-section radial-section" id="radial-measurement">
+        <div className="part-heading">
+          <div className="part-number"><span>PART</span><b>02</b></div>
+          <div>
+            <p className="section-index">SNAP-MEDIATED RADIAL MEASUREMENT</p>
+            <h2>Small labels turn radial position into a measurable coordinate.</h2>
+          </div>
+          <p className="part-summary">
+            Low-linkage-error SNAP labeling reduces positional uncertainty before SMLM,
+            allowing N- and C-terminal signals to report the radial distributions of the
+            kinase and death domains.
+          </p>
         </div>
-        <div className="method-cards">
-          <article><b>01</b><h3>SMLM</h3><p>Low-linkage-error molecular labeling resolves cross-sectional diameter and relative domain position.</p><span>RADIAL ARCHITECTURE</span></article>
-          <article><b>02</b><h3>Expansion microscopy</h3><p>Approximately 10× physical expansion reveals ordered periodic features along the assembly axis.</p><span>AXIAL PERIODICITY</span></article>
-          <article><b>03</b><h3>Quantitative SMLM</h3><p>Automated secondary clustering measures signaling-molecule abundance, number, volume, and local density.</p><span>FUNCTIONAL HOTSPOTS</span></article>
+
+        <div className="method-line" aria-label="SNAP-SMLM radial measurement workflow">
+          <span><b>01</b>SNAP fusion</span><i />
+          <span><b>02</b>BG-AF647</span><i />
+          <span><b>03</b>SMLM</span><i />
+          <span><b>04</b>FWHM + fusion</span>
         </div>
-        <div className="validation-block" id="validation">
-          <figure className="paper-figure validation-figure">
-            <img src={assetPath("/figure-s2-dark.webp")} width="1800" height="1390" loading="lazy" decoding="async" alt="Figure S2 validating reduced linkage error with SNAP-tag labeling" />
-            <figcaption><span>FIGURE S2</span> SNAP-tag labeling reduces linkage error and validates nanoscale width measurements.</figcaption>
-          </figure>
-          <div className="validation-copy">
+
+        <div className="radial-validation">
+          <FigurePlaceholder
+            label="FIGURE S2"
+            title="Linkage-error calibration"
+            description="Reserve for antibody-versus-SNAP comparison and SNAP-MAP7 microtubule calibration."
+            className="placeholder-wide"
+          />
+          <div className="metric-panel">
             <p className="section-index">MEASUREMENT VALIDATION</p>
-            <h3>Smaller labels reveal the native scale.</h3>
-            <p>Antibody recognition broadens the apparent necrosome width. SNAP-based labeling brings the measurement into close agreement with electron microscopy and a microtubule reference of known geometry.</p>
-            <div className="validation-metrics">
-              <div><b>101.27 nm</b><span>Antibody-labeled RIPK3 FWHM</span></div>
-              <div><b>56.45 nm</b><span>SNAP-labeled RIPK3 FWHM</span></div>
-              <div><b>37.01 ± 1.36 nm</b><span>SNAP–MAP7 apparent microtubule diameter</span></div>
-            </div>
+            <div><strong>101.27 nm</strong><span>Antibody-labeled RIPK3 apparent width</span></div>
+            <div><strong>56.45 nm</strong><span>SNAP-labeled RIPK3 apparent width</span></div>
+            <div><strong>37.01 ± 1.36 nm</strong><span>SNAP-MAP7 microtubule diameter, mean ± SEM</span></div>
           </div>
+        </div>
+
+        <div className="radial-result">
+          <div className="radial-copy">
+            <p className="section-index">THE RADIAL RESULT</p>
+            <h3>The kinase domain occupies a broader envelope than the death domain.</h3>
+            <p>
+              N-terminally labeled assemblies are consistently wider than C-terminally
+              labeled assemblies. Truncation-based spatial proxies reproduce the same
+              dimensions with an estimated deviation of approximately 1 nm, supporting
+              direct interpretation of the SNAP positions.
+            </p>
+            <div className="comparison-metrics">
+              <div><b>50.20 ± 1.70 nm</b><span>N-terminal RIPK1-FL</span></div>
+              <div><b>23.31 ± 1.10 nm</b><span>C-terminal RIPK1-FL</span></div>
+            </div>
+            <p className="result-note">Particle fusion and 3D SMLM show a continuous kinase-domain distribution extending from the core toward the assembly exterior, rather than a narrow peripheral shell.</p>
+          </div>
+          <div className="figure-stack">
+            <FigurePlaceholder
+              label="FIGURE 1C-1E"
+              title="Radial imaging, FWHM analysis, and particle fusion"
+              description="Reserve for the principal SMLM measurements that define kinase- and death-domain distributions."
+              className="placeholder-primary"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="result-section axial-section" id="axial-measurement">
+        <div className="part-heading">
+          <div className="part-number"><span>PART</span><b>03</b></div>
+          <div>
+            <p className="section-index">mBAOJIN + ExM AXIAL MEASUREMENT</p>
+            <h2>Physical expansion exposes the axial repeat of full-length RIPK1.</h2>
+          </div>
+          <p className="part-summary">
+            Dense, photostable fluorescent-protein labeling is preserved through physical
+            expansion, enabling Airyscan2 imaging and algorithmic pitch extraction along
+            the assembly axis.
+          </p>
+        </div>
+
+        <div className="axial-layout">
+          <div className="figure-stack">
+            <FigurePlaceholder
+              label="FIGURE S4"
+              title="Expansion microscopy workflow"
+              description="Reserve for fixation, anchoring, gelation, homogenization, expansion, and expansion-factor quantification."
+              className="placeholder-support"
+            />
+          </div>
+          <FigurePlaceholder
+            label="FIGURE 1F-1G"
+            title="Axial periodicity and pitch extraction"
+            description="Reserve for expanded RIPK1/RIPK3 assemblies and the feature-recognition workflow used to calculate helical pitch."
+            className="placeholder-primary placeholder-tall"
+          />
+        </div>
+
+        <div className="axial-summary">
+          <div className="expansion-badge"><b>9.76×</b><span>measured expansion factor</span></div>
+          <div className="pitch-comparison">
+            <p className="section-index">AXIAL PITCH / FIGURE 1H</p>
+            <div><strong>36.56 ± 0.96 nm</strong><span>Full-length RIPK1 / mean ± SEM / n=81</span></div>
+            <div><strong>33.29 ± 0.45 nm</strong><span>RIPK3-CD (388-518) / mean ± SEM / n=152</span></div>
+          </div>
+          <p className="axial-takeaway">Full-length RIPK1 retains a well-defined axial periodicity in situ, providing the second spatial constraint required for reconstruction.</p>
+        </div>
+      </section>
+
+      <section className="result-section reconstruction-section" id="reconstruction">
+        <div className="part-heading">
+          <div className="part-number"><span>PART</span><b>04</b></div>
+          <div>
+            <p className="section-index">STRUCTURE SIMULATION &amp; RECONSTRUCTION</p>
+            <h2>Measured radial and axial constraints rebuild full-length RIPK1.</h2>
+          </div>
+          <p className="part-summary">
+            Experimentally measured domain ranges and axial pitch are integrated with
+            available atomic structures to generate an in situ model of the intact assembly.
+          </p>
+        </div>
+
+        <div className="simulation-flow" aria-label="RIPK1 structure simulation workflow">
+          <article><b>01</b><span>EXPERIMENTAL INPUTS</span><h3>Radial ranges + axial pitch</h3></article>
+          <i aria-hidden="true" />
+          <article><b>02</b><span>AXIAL SCAFFOLD</span><h3>Single-stranded helical RHIM core</h3></article>
+          <i aria-hidden="true" />
+          <article><b>03</b><span>DOMAIN PLACEMENT</span><h3>Stochastic positioning without steric clashes</h3></article>
+          <i aria-hidden="true" />
+          <article><b>04</b><span>LINKER MODELING</span><h3>Constrained random walks maintain connectivity</h3></article>
+        </div>
+
+        <div className="reconstruction-figures">
+          <FigurePlaceholder
+            label="FIGURE S5"
+            title="Structure simulation workflow"
+            description="Reserve for atomic inputs, spatial constraints, linker modeling, and representative top and side views."
+            className="placeholder-wide"
+          />
+          <FigurePlaceholder
+            label="FIGURE 1I"
+            title="In situ full-length RIPK1 reconstruction"
+            description="Reserve for the final model integrating measured radial distributions and axial pitch."
+            className="placeholder-primary"
+          />
+        </div>
+
+        <div className="model-conclusion">
+          <p className="section-index">RESULT 1 / STRUCTURAL MODEL</p>
+          <h3>A compact RHIM core supports a stratified, continuous radial architecture.</h3>
+          <div className="domain-scale" aria-label="Radial domain organization">
+            <span className="domain-rhim"><i />RHIM core</span>
+            <span className="domain-dd"><i />Death domain / intermediate range</span>
+            <span className="domain-kd"><i />Kinase domain / broad outer range</span>
+          </div>
+          <p>The death domain occupies an intermediate radial range, while the kinase domain extends continuously from inner to outer regions. Together with the measured axial repeat, this defines the ordered in situ architecture of full-length RIPK1 amyloids.</p>
         </div>
       </section>
 
       <footer>
-        <div><span className="brand-mark" aria-hidden="true" /><p>RIPK1 KINASE ACTIVITY DRIVES RADIAL COMPACTION OF NECROSOME TO LICENSE NECROPTOSIS</p></div>
-        <p>Interactive research summary · Manuscript v5.7</p>
-        <p>Lin J. et al. · Xiamen University</p>
+        <div><span className="brand-mark" aria-hidden="true" /><p>AMYLOMAP REVEALS THE IN SITU ARCHITECTURE OF FULL-LENGTH RIPK1 AMYLOIDS</p></div>
+        <p>Result 1 / Figure 1 + Figures S2, S4, S5</p>
+        <p>Interactive research summary / Manuscript v5.7</p>
       </footer>
+
+      <a className="back-to-top" href="#overview" aria-label="Return to top">
+        <span aria-hidden="true">↑</span>
+        <b>TOP</b>
+      </a>
     </main>
   );
 }

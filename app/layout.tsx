@@ -4,9 +4,9 @@ import "./globals.css";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
-  title: "RIPK1 Kinase Activity · Necrosome Architecture",
+  title: "AmyloMap · Full-length RIPK1 Architecture",
   description:
-    "An interactive structural account of how RIPK1 kinase activity controls necrosome architecture and RIPK3–MLKL signaling output.",
+    "AmyloMap resolves the radial domain organization and axial periodicity of full-length RIPK1 amyloids in cells.",
   icons: {
     icon: `${basePath}/favicon.svg`,
     shortcut: `${basePath}/favicon.svg`,
