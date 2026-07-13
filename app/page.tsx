@@ -25,7 +25,7 @@ export default function Home() {
           poster={assetPath("/ripk1-hero-poster.jpg")}
           aria-label="Time-lapse microscopy of RIPK1 necrosome dynamics"
         >
-          <source src={assetPath("/ripk1-hero.mp4")} type="video/mp4" />
+          <source src={assetPath("/ripk1-hero.avi")} type="video/x-msvideo" />
         </video>
         <div className="hero-image" style={{ backgroundImage: `url(${assetPath("/ripk1-hero-poster.jpg")})` }} aria-hidden="true" />
         <div className="hero-shade" aria-hidden="true" />
