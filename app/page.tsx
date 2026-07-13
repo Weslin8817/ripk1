@@ -1,29 +1,7 @@
+import FigurePlaceholder from "./FigurePlaceholder";
+
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
-
-type FigurePlaceholderProps = {
-  label: string;
-  title: string;
-  description: string;
-  className?: string;
-};
-
-function FigurePlaceholder({ label, title, description, className = "" }: FigurePlaceholderProps) {
-  return (
-    <figure className={`figure-placeholder ${className}`}>
-      <div className="placeholder-canvas" role="img" aria-label={`Reserved image area for ${label}`}>
-        <span>IMAGE SPACE RESERVED</span>
-        <i aria-hidden="true" />
-        <b>{label}</b>
-      </div>
-      <figcaption>
-        <span>{label}</span>
-        <strong>{title}</strong>
-        <p>{description}</p>
-      </figcaption>
-    </figure>
-  );
-}
 
 export default function Home() {
   return (
@@ -130,10 +108,11 @@ export default function Home() {
           </div>
           <div className="figure-stack">
             <FigurePlaceholder
+              src={assetPath("/figure-1ab.webp")}
               label="FIGURE 1A-1B"
               title="Domain organization and construct design"
               description="Reserve for the RIPK1 domain schematic, available structures, full-length prediction, and truncation map."
-              className="placeholder-primary"
+              className="placeholder-primary placeholder-1ab"
             />
           </div>
         </div>
@@ -162,10 +141,11 @@ export default function Home() {
 
         <div className="radial-validation">
           <FigurePlaceholder
+            src={assetPath("/figure-s2.webp")}
             label="FIGURE S2"
             title="Linkage-error calibration"
             description="Reserve for antibody-versus-SNAP comparison and SNAP-MAP7 microtubule calibration."
-            className="placeholder-wide"
+            className="placeholder-wide placeholder-s2"
           />
           <div className="metric-panel">
             <p className="section-index">MEASUREMENT VALIDATION</p>
@@ -193,6 +173,7 @@ export default function Home() {
           </div>
           <div className="figure-stack">
             <FigurePlaceholder
+              src={assetPath("/figure-1cde.webp")}
               label="FIGURE 1C-1E"
               title="Radial imaging, FWHM analysis, and particle fusion"
               description="Reserve for the principal SMLM measurements that define kinase- and death-domain distributions."
@@ -219,6 +200,7 @@ export default function Home() {
         <div className="axial-layout">
           <div className="figure-stack">
             <FigurePlaceholder
+              src={assetPath("/figure-s4.webp")}
               label="FIGURE S4"
               title="Expansion microscopy workflow"
               description="Reserve for fixation, anchoring, gelation, homogenization, expansion, and expansion-factor quantification."
@@ -226,6 +208,7 @@ export default function Home() {
             />
           </div>
           <FigurePlaceholder
+            src={assetPath("/figure-1fg.webp")}
             label="FIGURE 1F-1G"
             title="Axial periodicity and pitch extraction"
             description="Reserve for expanded RIPK1/RIPK3 assemblies and the feature-recognition workflow used to calculate helical pitch."
@@ -269,12 +252,14 @@ export default function Home() {
 
         <div className="reconstruction-figures">
           <FigurePlaceholder
+            src={assetPath("/figure-s5.webp")}
             label="FIGURE S5"
             title="Structure simulation workflow"
             description="Reserve for atomic inputs, spatial constraints, linker modeling, and representative top and side views."
             className="placeholder-wide"
           />
           <FigurePlaceholder
+            src={assetPath("/figure-1i.webp")}
             label="FIGURE 1I"
             title="In situ full-length RIPK1 reconstruction"
             description="Reserve for the final model integrating measured radial distributions and axial pitch."

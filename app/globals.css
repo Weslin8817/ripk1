@@ -117,12 +117,12 @@ h1 { max-width: 760px; margin: 0; font-size: clamp(58px, 6.1vw, 96px); line-heig
 
 /* Image replacement slots */
 .figure-placeholder { position: relative; margin: 0; min-width: 0; overflow: hidden; border: 1px solid rgba(111,145,190,.42); background: rgba(5,8,18,.88); box-shadow: inset 0 0 0 1px rgba(57,217,255,.025); }
-.placeholder-canvas { position: relative; min-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: linear-gradient(rgba(57,217,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(57,217,255,.035) 1px, transparent 1px), radial-gradient(circle at center, rgba(57,217,255,.09), transparent 44%); background-size: 38px 38px, 38px 38px, auto; }
-.placeholder-canvas::before, .placeholder-canvas::after { content: ""; position: absolute; pointer-events: none; }
-.placeholder-canvas::before { width: 72%; border-top: 1px solid rgba(57,217,255,.36); }
-.placeholder-canvas::after { height: 64%; border-left: 1px solid rgba(255,58,166,.32); }
+.placeholder-canvas { position: relative; min-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(circle at center, rgba(57,217,255,.09), transparent 44%); }
+.figure-slot-image { object-fit: contain; opacity: 0; transition: opacity .25s ease; }
+.placeholder-canvas.has-image { background: #060914; }
+.placeholder-canvas.has-image .figure-slot-image { opacity: 1; }
+.placeholder-canvas::before, .placeholder-canvas::after { content: none !important; display: none !important; border: 0 !important; }
 .placeholder-canvas > span { position: absolute; top: 24px; left: 26px; color: rgba(202,215,233,.52); font-size: 9px; font-weight: 700; letter-spacing: .22em; }
-.placeholder-canvas > i { width: 9px; height: 9px; border: 1px solid var(--cyan); border-radius: 50%; background: #07101c; box-shadow: 0 0 22px rgba(57,217,255,.75); }
 .placeholder-canvas > b { position: absolute; right: 26px; bottom: 23px; color: rgba(255,255,255,.74); font-size: clamp(18px, 2vw, 30px); letter-spacing: -.035em; }
 .figure-placeholder figcaption { display: grid; grid-template-columns: auto 1fr; gap: 8px 22px; padding: 21px 24px 23px; border-top: 1px solid var(--line); background: rgba(8,12,26,.97); }
 .figure-placeholder figcaption span { grid-row: 1 / 3; color: var(--magenta); font-size: 9px; font-weight: 800; letter-spacing: .16em; white-space: nowrap; }
@@ -299,4 +299,14 @@ footer p { margin: 0; line-height: 1.6; }
   .domain-scale { flex-direction: column; }
   footer { grid-template-columns: 1fr; align-items: start; }
   .back-to-top { right: 18px; bottom: 18px; width: 50px; height: 50px; }
+}
+
+.placeholder-1ab .placeholder-canvas {
+  min-height: 0;
+  aspect-ratio: 1259 / 1020;
+}
+
+.placeholder-s2 .placeholder-canvas {
+  min-height: 0;
+  aspect-ratio: 1900 / 1467;
 }
