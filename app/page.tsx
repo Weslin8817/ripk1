@@ -177,7 +177,7 @@ export default function Home() {
               label="FIGURE 1C-1E"
               title="Radial imaging, FWHM analysis, and particle fusion"
               description="Reserve for the principal SMLM measurements that define kinase- and death-domain distributions."
-              className="placeholder-primary"
+              className="placeholder-primary placeholder-1cde"
             />
           </div>
         </div>
@@ -204,7 +204,7 @@ export default function Home() {
               label="FIGURE S4"
               title="Expansion microscopy workflow"
               description="Reserve for fixation, anchoring, gelation, homogenization, expansion, and expansion-factor quantification."
-              className="placeholder-support"
+              className="placeholder-support placeholder-s4"
             />
           </div>
           <FigurePlaceholder
@@ -212,7 +212,7 @@ export default function Home() {
             label="FIGURE 1F-1G"
             title="Axial periodicity and pitch extraction"
             description="Reserve for expanded RIPK1/RIPK3 assemblies and the feature-recognition workflow used to calculate helical pitch."
-            className="placeholder-primary placeholder-tall"
+            className="placeholder-primary placeholder-1fg"
           />
         </div>
 
@@ -256,26 +256,28 @@ export default function Home() {
             label="FIGURE S5"
             title="Structure simulation workflow"
             description="Reserve for atomic inputs, spatial constraints, linker modeling, and representative top and side views."
-            className="placeholder-wide"
+            className="placeholder-wide placeholder-s5"
           />
+        </div>
+
+        <div className="reconstruction-outcome">
           <FigurePlaceholder
             src={assetPath("/figure-1i.webp")}
             label="FIGURE 1I"
             title="In situ full-length RIPK1 reconstruction"
             description="Reserve for the final model integrating measured radial distributions and axial pitch."
-            className="placeholder-primary"
+            className="placeholder-primary placeholder-1i"
           />
-        </div>
-
-        <div className="model-conclusion">
-          <p className="section-index">RESULT 1 / STRUCTURAL MODEL</p>
-          <h3>A compact RHIM core supports a stratified, continuous radial architecture.</h3>
-          <div className="domain-scale" aria-label="Radial domain organization">
-            <span className="domain-rhim"><i />RHIM core</span>
-            <span className="domain-dd"><i />Death domain / intermediate range</span>
-            <span className="domain-kd"><i />Kinase domain / broad outer range</span>
+          <div className="model-conclusion">
+            <p className="section-index">RESULT 1 / STRUCTURAL MODEL</p>
+            <h3>A compact RHIM core supports a stratified, continuous radial architecture.</h3>
+            <div className="domain-scale" aria-label="Radial domain organization">
+              <span className="domain-rhim"><i />RHIM core</span>
+              <span className="domain-dd"><i />Death domain / intermediate range</span>
+              <span className="domain-kd"><i />Kinase domain / broad outer range</span>
+            </div>
+            <p>The death domain occupies an intermediate radial range, while the kinase domain extends continuously from inner to outer regions. Together with the measured axial repeat, this defines the ordered in situ architecture of full-length RIPK1 amyloids.</p>
           </div>
-          <p>The death domain occupies an intermediate radial range, while the kinase domain extends continuously from inner to outer regions. Together with the measured axial repeat, this defines the ordered in situ architecture of full-length RIPK1 amyloids.</p>
         </div>
       </section>
 
